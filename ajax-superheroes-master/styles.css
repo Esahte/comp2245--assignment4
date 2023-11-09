@@ -1,3 +1,4 @@
+/* Reset styles */
 * {
     box-sizing: border-box;
 }
@@ -5,33 +6,46 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Oswald', sans-serif;
     background-color: #f5f5f5;
 }
 
+/* Typography */
 h1, h2, h3, h4 {
     text-transform: uppercase;
     font-weight: bold;
 }
 
-header {
-    background-color: #527a99;
-    color: white;
-}
-
 h1 {
     font-size: 2.5rem;
     text-align: center;
-    margin: 0;
     padding: 1rem;
+    margin: 0;
 }
 
+h3 {
+    margin-top: 1.5rem;
+    background-color: #f5f5f5;
+}
+
+h4 {
+    background-color: #f5f5f5;
+}
+
+/* Header */
+header {
+    background-color: #2e79ba;
+    color: white;
+}
+
+/* Main content */
 main {
     max-width: 1200px;
     margin: 0 auto;
     padding: 1rem;
 }
 
+/* Search */
 #search {
     margin-bottom: 1.5rem;
 }
@@ -44,7 +58,7 @@ label {
 input[type="text"] {
     width: 85%;
     padding: 0.5rem;
-    border: snow;
+    border: none;
     border-radius: 0.25rem;
     box-shadow: 1px 1px 2px #ccc;
     font-size: 1rem;
@@ -61,16 +75,8 @@ button {
     color: white;
 }
 
-h3 {
-    margin: 1.5rem 0 0 0;
-    background-color: #f5f5f5;
-}
-
-h4 {
-    margin: 0;
-    background-color: #f5f5f5;
-}
-
+/* Not found message */
 .not-found {
     color: #cf0000;
 }
+
