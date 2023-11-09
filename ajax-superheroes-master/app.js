@@ -1,7 +1,8 @@
 "use strict";
 window.onload = function() {
-    // Code that displays the list of superheroes as a javascript alert
+    // Write code that allows the user to search for a superhero and displays the results
     const searchButton = document.getElementById("search-btn");
+    const searchInput = document.getElementById("search-box");
     let httpRequest;
 
     searchButton.onclick = function(element) {
@@ -14,13 +15,14 @@ window.onload = function() {
             if (httpRequest.readyState === XMLHttpRequest.DONE) {
                 if (httpRequest.status === 200) {
                     let response = httpRequest.responseText;
-                    alert(response);
+                    const searchResult = document.getElementById("results");
+                    searchResult.innerHTML = response;
                 } else {
                     alert("There was a problem with the request.");
                 }
             }
         };
-        httpRequest.open("GET", "superheroes.php");
+        httpRequest.open("GET", "superheroes.php?query=" + searchInput.value, true);
         httpRequest.send();
     }
 };
