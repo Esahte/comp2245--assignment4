@@ -15,8 +15,8 @@ window.onload = function() { // This function will run after the page has finish
             if (httpRequest.readyState === XMLHttpRequest.DONE) { // The request has been completed
                 if (httpRequest.status === 200) { // The request was successful
                     let response = httpRequest.responseText; // Get the response text
-                    const searchResult = document.getElementById("results"); // Get the results element
-                    searchResult.innerHTML = response; // Insert the response text into the results element
+                    const searchResult = document.getElementById("results"); // Get the result element
+                    searchResult.innerHTML = response; // Insert the response text into the result element
                 } else { // The request was not successful
                     alert("There was a problem with the request."); // Alert the user about the problem
                 }

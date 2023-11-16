@@ -63,34 +63,6 @@ $superheroes = [
     ],
 ];
 
-// Check if a query parameter is provided
-if (!empty($_GET['query'])) {
-    // Sanitize the query parameter to prevent XSS attacks
-    $query = filter_var($_GET['query'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $found = false; // Flag to track if a superhero is found
-
-    // Loop through each superhero
-    foreach ($superheroes as $superhero) {
-        // Check if the query matches the superhero's alias or name (case-insensitive)
-        if (strcasecmp($superhero['alias'], $query) == 0 || strcasecmp($superhero['name'], $query) == 0) {
-            // If a match is found, print the superhero's details and set the flag to true
-            echo "<h3>" . htmlspecialchars($superhero['alias']) . "</h3>";
-            echo "<h4>" . "a.k.a " . htmlspecialchars($superhero['name']) . "</h4>";
-            echo "<p>" . htmlspecialchars($superhero['biography']) . "</p>";
-            $found = true;
-        }
-    }
-
-    // If no match is found, print a not found message
-    if (!$found) {
-        echo "<h3 class='not-found'>Superhero not found</h3>";
-    }
-} else {
-    // If no query is provided, print a list of all superheroes
-    echo "<ul>";
-    foreach ($superheroes as $superhero) {
-        echo "<li>" . htmlspecialchars($superhero['alias']) . "</li>";
-    }
-    echo "</ul>";
-}
+// Include the superheroes_exe.php file
+include 'superheroes_exe.php';
 
