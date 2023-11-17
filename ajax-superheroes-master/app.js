@@ -1,30 +1,25 @@
-"use strict"; // Enforces strict mode to catch common JavaScript pitfalls
+$(document).ready(() => {
+    // Get the search button element
+    const searchButton = $('#search-btn');
 
-window.onload = function() { // This function will run after the page has finished loading
-    const searchButton = document.getElementById("search-btn"); // Get the search button element
-    const searchInput = document.getElementById("search-box"); // Get the search input element
-    let httpRequest; // Declare a variable for the HTTP request
+    // Add a click event listener to the search button
+    searchButton.click((e) => {
+        // Prevent the default form submission behavior
+        e.preventDefault();
 
-    searchButton.onclick = function(element) { // This function will run when the search button is clicked
-        element.preventDefault(); // Prevent the default form submission behavior
+        // Get the search input element
+        const searchInput = $('#search-box');
 
-        httpRequest = new XMLHttpRequest(); // Create a new HTTP request
+        // Construct the URL for the AJAX request with the search query parameter
+        const url = `superheroes.php?query=${encodeURIComponent(searchInput.val())}`;
 
-        // GET Request
-        httpRequest.onreadystatechange = function() { // This function will run whenever the readyState property changes
-            if (httpRequest.readyState === XMLHttpRequest.DONE) { // The request has been completed
-                if (httpRequest.status === 200) { // The request was successful
-                    let response = httpRequest.responseText; // Get the response text
-                    const searchResult = document.getElementById("results"); // Get the result element
-                    searchResult.innerHTML = response; // Insert the response text into the result element
-                } else { // The request was not successful
-                    alert("There was a problem with the request."); // Alert the user about the problem
-                }
-            }
-        };
-        const url = "superheroes.php?query=" + encodeURIComponent(searchInput.value); // Encode the input value to safely include it in the URL
-        httpRequest.open("GET", url, true); // Initialize the request
-        httpRequest.send(); // Send the request
-    }
-};
-
+        // Send an AJAX GET request to the server with the search query
+        $.ajax(url, {
+            method: 'GET'
+        })
+        // If the request is successful, display the response in the result element
+        .done(response => $('#results').html(response))
+        // If the request fails, display an alert message
+        .fail(() => alert('There was a problem with the request.'));
+    });
+});
